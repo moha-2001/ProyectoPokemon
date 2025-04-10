@@ -1,0 +1,20 @@
+=============================
+**   CANVIS EN EL MODEL    **
+=============================
+Nou mètode formatFilename a PokemonList.
+Definició d'una constant PATH_TO_FILES.
+Modificació de loadPokemons per incloure el nou PATH_TO_FILES.
+Creació del mètode getTeam a l'equip.
+Creació del mètode getTeam al player.
+Externalització de les imatges, per ser utilitzades en totes les versions.
+=============================
+**  CANVIS EN L'APP  VUE   **
+=============================
+Instal·lació de l'extensió que resalta el codi html del template. ES6 String html. Per resaltar /*html*/ `<div>Content</div>`
+Modificació del handleSortOptions, el formulari i el mètode.
+Inclusió de globalPokemonList: [], com a reactiu.
+Creació d'un nou arxiu PokemonCard.js, child d'App, per gestionar les cartes i events.
+- En PokemonCard es defineix el template per la Card, les propietats que el parent enviarà, i el mètode onToggleSelection, que es comunica amb el pare amb el handleToggleSelection.
+S'ha mogut el mètode isPokemonInTeam PokemonUI -> App.js
+S'ha modificat el mètode addPokemonToCurrentPlayer de viewModel
+S'han hagut de modificar mètodes referents a currentPlayer (a vegades és reconeix com a string!?)

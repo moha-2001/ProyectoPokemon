@@ -1,0 +1,173 @@
+@startuml Multiplayer_Pokemon
+' Opcionalment pots triar un skin o theme
+' per a una estètica diferent, per exemple:
+' !theme cyborg
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam classFontColor #000000
+skinparam classBackgroundColor #FFFFFF
+skinparam classArrowColor #999999
+skinparam ArrowThickness 1
+
+title UML Diagram - Pokémon Team Builder
+
+' -----------------------------------------------------------
+'                CLASSE POKEMON (BASE) I SUBCLASSES
+' -----------------------------------------------------------
+class Pokemon {
+  - id: number
+  - name: string
+  - image: string
+  - points: number
+  - special_power: string
+  + displayDetails(): string
+}
+
+class GrassPokemon
+class FirePokemon
+class WaterPokemon
+class ElectricPokemon
+class BugPokemon
+class NormalPokemon
+class PoisonPokemon
+class PsychicPokemon
+class GroundPokemon
+class FairyPokemon
+class RockPokemon
+class IcePokemon
+class DragonPokemon
+class DarkPokemon
+class SteelPokemon
+class GhostPokemon
+class FightingPokemon
+class FlyingPokemon
+
+' Herència de la classe base "Pokemon"
+Pokemon <|-- GrassPokemon
+Pokemon <|-- FirePokemon
+Pokemon <|-- WaterPokemon
+Pokemon <|-- ElectricPokemon
+Pokemon <|-- BugPokemon
+Pokemon <|-- NormalPokemon
+Pokemon <|-- PoisonPokemon
+Pokemon <|-- PsychicPokemon
+Pokemon <|-- GroundPokemon
+Pokemon <|-- FairyPokemon
+Pokemon <|-- RockPokemon
+Pokemon <|-- IcePokemon
+Pokemon <|-- DragonPokemon
+Pokemon <|-- DarkPokemon
+Pokemon <|-- SteelPokemon
+Pokemon <|-- GhostPokemon
+Pokemon <|-- FightingPokemon
+Pokemon <|-- FlyingPokemon
+
+' -----------------------------------------------------------
+'                POKEMONLIST
+' -----------------------------------------------------------
+class PokemonList {
+  - _allPokemons: Pokemon[]
+  - isLoaded: boolean
+  + loadPokemons(data): void
+  + sortPokemons(criteria, method): void
+  + getPokemonByName(name: string): Pokemon
+  + get allPokemons(): Pokemon[]
+}
+
+' Relació de composició: PokemonList conté molts Pokemon
+PokemonList "1" o-- "0..*" Pokemon
+
+
+' -----------------------------------------------------------
+'                POKEMONTEAM
+' -----------------------------------------------------------
+class PokemonTeam {
+  - selectedTeam: Pokemon[]
+  - credits: number
+  - maxTeamSize: number
+  + addPokemon(pokemon: Pokemon): boolean
+  + removePokemon(pokemonName: string): void
+  + getTeamDetails(): string
+  + getCredits(): number
+}
+
+' Relació de composició: PokemonTeam conté molts Pokemon
+PokemonTeam "1" o-- "0..*" Pokemon
+
+' -----------------------------------------------------------
+'                PLAYER
+' -----------------------------------------------------------
+class Player {
+  - name: string
+  - team: PokemonTeam
+  + getName(): string
+  + addPokemon(pokemon: Pokemon): boolean
+  + removePokemon(pokemonName: string): void
+  + getTeamDetails(): string
+  + getCredits(): number
+  + attack(target: Player): void
+}
+
+' Un Player té un PokemonTeam
+Player "1" o-- "1" PokemonTeam
+
+
+' -----------------------------------------------------------
+'                POKEMONTEAMVIEWMODEL
+' -----------------------------------------------------------
+class PokemonTeamViewModel {
+  - player1: Player
+  - player2: Player
+  - currentPlayer: Player
+  - team: PokemonTeam
+  - pokemonList: PokemonList
+  
+  + constructor()
+  + initializeMatch(player1Name, player2Name): void
+  + switchPlayer(): void
+  + getCurrentPlayer(): Player
+  + areTeamsComplete(): boolean
+  + addPokemonToTeam(name: string): void
+  + removePokemonFromTeam(name: string): void
+  + sortGlobalList(criteria: string, method: string): void
+  + getGlobalList(): Pokemon[]
+  + getTeamDetails(): string
+  + getCredits(): number
+  + setPlayerNames(player1Name, player2Name): void
+  + autoSelectCpuTeam(): void
+  + startBattle(): void
+  + fightRound(): void
+  + getRandomFighter(team: PokemonTeam): Pokemon
+}
+
+' Relacions: la ViewModel conté (o usa) PokemonTeam i PokemonList, i té 2 jugadors
+PokemonTeamViewModel "1" o-- "1" PokemonTeam
+PokemonTeamViewModel "1" o-- "1" PokemonList
+PokemonTeamViewModel "1" o-- "2" Player
+
+
+' -----------------------------------------------------------
+'                POKEMONUI
+' -----------------------------------------------------------
+class PokemonUI {
+  - viewModel: PokemonTeamViewModel
+  - jsonUrl: string
+  - [DOM references...]
+  + constructor(viewModel, jsonUrl)
+  + init(): Promise<void>
+  + renderGlobalList(): void
+  + toggleSelection(card): void
+  + showTeam(): void
+  + handleSortOptions(): void
+  + updateCreditsDisplay(): void
+  + startTeamSelection(): void
+  + handleNextPlayer(): void
+  + transitionToBattle(): void
+  + startBattle(): void
+  + updateTeamsDisplay(): void
+}
+
+PokemonUI "1" o-- "1" PokemonTeamViewModel
+
+@enduml

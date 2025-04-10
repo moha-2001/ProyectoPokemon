@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <section v-if="currentScreen === 'setup'" class="setup-container">
+            <h2 class="setup-title">Configuració dels Jugadors</h2>
+            <p class="setup-instruccions">
+                Introdueix els noms dels jugadors per començar el joc.
+            </p>
+        
+            <div class="toggle-container">
+                <label for="two-players-toggle">Dos Jugadors:</label>
+                <label class="switch">
+                <input type="checkbox" v-model="isTwoPlayers" />
+                <span class="slider round"></span>
+                </label>
+            </div>
+        
+            <div class="player-input-group">
+                <label for="player1-name" class="player-label">Nom del Jugador 1:</label>
+                <input type="text" v-model="player1Name" class="player-input" required />
+            </div>
+        
+            <div class="player-input-group" v-if="isTwoPlayers">
+                <label for="player2-name" class="player-label">Nom del Jugador 2:</label>
+                <input type="text" v-model="player2Name" class="player-input" required />
+            </div>
+        
+            <button @click="startGame" class="setup-button">Següent</button>
+        </section>
+              <!-- Secció de selecció de l'equip -->
+        <section v-if="currentScreen === 'teamSelection'" id="team-selection-section">
+            <h2>Selecciona el teu Equip</h2>
+            <h2>{{ currentPlayerSelectionMessage }}</h2>        
+            <h2 id="credits-display">
+                Crèdits restants: <span id="credits-value">{{ creditsDisplay }}</span>
+            </h2>
+            <div id="team-section">
+                <h2 id="current-player-selection">{{ currentPlayerSelectionDisplay }}</h2>
+                <div id="selected-team-grid" class="grid-container" ref="teamContainer">
+                    <div v-for="(pokemon, index) in currentPlayerTeam" 
+                    :key="index" 
+                    class="pokemon-card"
+                    >
+                        <h3>{{ pokemon.name }}</h3>
+                        <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
+                        <p v-if="pokemon.types && pokemon.types.length">
+                        Tipus: {{ pokemon.types.join(', ') }}
+                        </p>
+                        <p>Punts: {{ pokemon.points }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <button id="next-player-button" style="display: block">
+                Següent Jugador
+            </button>
+            <!-- Opcions d'ordenació -->
+            <div id="sort-options-section">
+                <h2>Opcions d'Ordenació</h2>
+                <form id="sort-options-form">
+                    <fieldset>
+                        <legend>Ordena per:</legend>
+                        <label>
+                        <input type="radio" name="sort-criteria" value="name" v-model="sortCriteria" />
+                        Nom
+                        </label>
+                        <label>
+                        <input type="radio" name="sort-criteria" value="points" v-model="sortCriteria" />
+                        Punts
+                        </label>
+                        <label>
+                        <input type="radio" name="sort-criteria" value="type" v-model="sortCriteria" />
+                        Tipus
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Mètode d'ordenació:</legend>
+                        <label>
+                        <input type="radio" name="sort-method" value="bubble" v-model="sortMethod" />
+                        Bombolla
+                        </label>
+                        <label>
+                        <input type="radio" name="sort-method" value="insertion" v-model="sortMethod" />
+                        Inserció
+                        </label>
+                        <label>
+                        <input type="radio" name="sort-method" value="selection" v-model="sortMethod" />
+                        Selecció
+                        </label>
+                    </fieldset>
+                    <button type="button" id="sort-team" @click="handleSortOptions">
+                    Ordenar
+                    </button>
+                </form>
+            </div>
+            <div id="pokemon-grid" class="grid-container" ref="gridContainer">
+                <pokemon-card
+                v-for="(poke, index) in globalPokemonList"
+                :key="index"
+                :pokemon="poke"
+                :is-selected="isPokemonInTeam(poke.name)"
+                @toggle-selection="handleToggleSelection"
+                />
+                <!--                <div v-for="(pokemon, index) in globalPokemonList" :key="index" class="pokemon-card">
+                <h3>{{ pokemon.name }}</h3>
+                <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
+                <p v-if="pokemon.types && pokemon.types.length">
+                Tipus: {{ pokemon.types.join(', ') }}
+                </p>
+                <p>Punts: {{ pokemon.points }}</p>
+                </div>-->
+            </div>
+        </section>
+      </div>
+</body>
+</html>

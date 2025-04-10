@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../RA2/estil.css" />
+    <link rel="stylesheet" href="./estil.css" />
+    <title>Pokémon Edició 2 Jugadors (o vs. CPU) amb Vue.js.</title>
+  </head>
+  <body>
+    <header>
+      <h1>Pokémon Edició 2 Jugadors (o vs. CPU) amb Vue.js.</h1>
+    </header>
+    <main>
+      <!-- Secció de configuració dels jugadors -->
+      <section id="player-setup-section" class="setup-container">
+        <h2 class="setup-title">Configuració dels Jugadors</h2>
+        <p class="setup-instruccions">
+          Introdueix els noms dels jugadors per començar el joc.
+        </p>
+
+        <!-- Selector: Dos Jugadors (activat) / Un Jugador vs CPU (desactivat) -->
+        <div class="toggle-container">
+          <label for="two-players-toggle">Dos Jugadors:</label>
+          <label class="switch">
+            <input type="checkbox" id="two-players-toggle" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="player-input-group">
+          <label for="player1-name" class="player-label"
+            >Nom del Jugador 1:</label
+          >
+          <input type="text" id="player1-name" class="player-input" required />
+        </div>
+
+        <!-- Camp del Jugador 2 ocult/mostrat dinàmicament -->
+        <div class="player-input-group" id="player2-container">
+          <label for="player2-name" class="player-label"
+            >Nom del Jugador 2:</label
+          >
+          <input type="text" id="player2-name" class="player-input" required />
+        </div>
+
+        <button id="start-team-selection-button" class="setup-button">
+          Següent
+        </button>
+      </section>
+      <!-- Secció de selecció de l'equip -->
+      <section id="team-selection-section" style="display: none">
+        <h2>Selecciona el teu Equip</h2>
+        <!--        <p id="current-player-selection"></p>-->
+        <div id="team-section">
+          <h2 id="current-player-selection">El teu Equip</h2>
+          <div id="selected-team-grid" class="grid-container">
+            <!-- Aquí es mostrarà l'equip -->
+          </div>
+        </div>
+        <h2 id="credits-display">
+          Crèdits restants: <span id="credits-value"></span>
+        </h2>
+        <button id="next-player-button" style="display: block">
+          Següent Jugador
+        </button>
+        <!-- Opcions d'ordenació -->
+        <div id="sort-options-section">
+          <h2>Opcions d'Ordenació</h2>
+          <form id="sort-options-form">
+            <fieldset>
+              <legend>Ordena per:</legend>
+              <label>
+                <input type="radio" name="sort-criteria" value="name" checked />
+                Nom
+              </label>
+              <label>
+                <input type="radio" name="sort-criteria" value="points" /> Punts
+              </label>
+              <label>
+                <input type="radio" name="sort-criteria" value="type" /> Tipus
+              </label>
+            </fieldset>
+            <fieldset>
+              <legend>Mètode d'ordenació:</legend>
+              <label>
+                <input type="radio" name="sort-method" value="bubble" checked />
+                Bombolla
+              </label>
+              <label>
+                <input type="radio" name="sort-method" value="insertion" />
+                Inserció
+              </label>
+              <label>
+                <input type="radio" name="sort-method" value="selection" />
+                Selecció
+              </label>
+            </fieldset>
+            <button type="button" id="sort-team">Ordenar</button>
+          </form>
+        </div>
+        <div id="pokemon-grid"></div>
+      </section>
+
+      <!-- Secció de visualització d'equips -->
+      <section id="teams-overview-section" style="display: none">
+        <h2>Vista General dels Equips</h2>
+        <h3 id="player1-team-name">Equip del Jugador 1</h3>
+        <div id="player1-team-display" class="player1-selected-team-grid"></div>
+        <h3 id="player2-team-name">Equip del Jugador 2</h3>
+        <div id="player2-team-display" class="player2-selected-team-grid"></div>
+        <!--        <button id="start-battle-button">Iniciar la Batalla</button>-->
+      </section>
+
+      <!-- Arena de Combat -->
+      <!--      <section id="battle-arena-section" style="display: none">
+        <table>
+          <tr>
+            <td>
+              <div id="pokemon1-display" class="pokemon-fighter"></div>
+            </td>
+            <td>
+              <p class="vs-text">VS</p>
+            </td>
+            <td>
+              <div id="pokemon2-display" class="pokemon-fighter"></div>
+            </td>
+            <td>
+              <div>
+                <h2>Registre de la Batalla</h2>
+                <div id="battle-log"></div>
+              </div>
+            </td>
+          </tr>
+        </table>
+        </section>-->
+      <!-- Arena de Combat -->
+      <section id="battle-arena-section" style="display: none">
+        <div class="battle-container">
+          <!-- Pokémon 1 -->
+          <div id="pokemon1-display" class="pokemon-fighter"></div>
+
+          <!-- VS Text -->
+          <p class="vs-text">VS</p>
+
+          <!-- Pokémon 2 -->
+          <div id="pokemon2-display" class="pokemon-fighter"></div>
+
+          <!-- Battle Log -->
+          <div class="battle-log-container">
+            <h2>Registre de la Batalla</h2>
+            <div id="battle-log"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Secció de la Batalla -->
+      <section id="battle-section" style="display: none">
+        <h2>Moment de la Batalla!</h2>
+        <p id="current-turn-display">És el torn del Jugador 1!</p>
+        <button id="perform-attack-button">Atacar!</button>
+      </section>
+    </main>
+    <script type="module" src="./codi.js"></script>
+  </body>
+</html>

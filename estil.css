@@ -1,0 +1,447 @@
+/***********************************************
+ * GLOBAL & BASIC ELEMENT STYLES
+ ***********************************************/
+ body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Cubre toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-image: url("./pexels-andreea-ch-371539-1166644.jpg");
+  background-size: cover;       /* Cubre todo el espacio sin deformar */
+  background-position: center;  /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita repetición */
+  background-attachment: fixed; /* Fondo fijo al hacer scroll (opcional) */
+  background-color: #f0f0f0;    /* Color de respaldo */
+}
+
+main {
+  width: 100%;
+  max-width: 1200px; /* Ancho máximo para contenido */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente para legibilidad */
+  border-radius: 10px; /* Bordes redondeados */
+  margin: 20px 0; /* Espaciado exterior */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+}
+.grid-container {
+  display: flex;          /* Organiza las tarjetas en fila */
+  flex-wrap: wrap;        /* Permite que las tarjetas pasen a la siguiente línea si no hay espacio */
+  gap: 20px;              /* Espacio entre tarjetas */
+  justify-content: start; /* Alinea las tarjetas al inicio */
+}
+
+.pokemon-card {
+  border: 1px solid #ccc; /* Borde para simular una tarjeta */
+  border-radius: 8px;     /* Esquinas redondeadas */
+  padding: 15px;          /* Espacio interno */
+  width: 200px;           /* Ancho fijo para cada tarjeta */
+  background-color: #f9f9f9; /* Color de fondo */
+}
+
+.pokemon-card h3 {
+  margin-top: 0;          /* Elimina el margen superior del título */
+  color: #333;            /* Color del texto */
+}
+header{
+  margin-top: 120px;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/***********************************************
+ * BATTLE SECTION
+ ***********************************************/
+#battle-section {
+  padding: 20px;
+  background-color: #f0f8ff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+/***********************************************
+ * TEAM DISPLAY
+ ***********************************************/
+.team-display {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #999;
+  background-color: #eef;
+  border-radius: 4px;
+}
+
+/***********************************************
+ * POKEMON GRID
+ ***********************************************/
+#pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-card {
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5); /* Makes them transparent */
+  width: 100%;
+  max-width: 200px;
+}
+
+.pokemon-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  border: 2px solid #4a90e2;
+}
+
+.pokemon-card h3 {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.pokemon-card p {
+  margin: 2px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.pokemon-card.selected {
+  border: 2px solid green;
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+/***********************************************
+ * SELECTED TEAM GRID
+ ***********************************************/
+#selected-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/***********************************************
+ * PLAYER-SPECIFIC TEAM GRIDS
+ ***********************************************/
+.player1-selected-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: lightsalmon; /* Distinctive background */
+}
+
+.player2-selected-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: lightgreen; /* Distinctive background */
+}
+
+/***********************************************
+ * SETUP SECTION (PLAYER INPUT) STYLES
+ ***********************************************/
+.setup-container {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.setup-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.setup-instructions {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.player-input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.player-label {
+  display: block;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.player-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.player-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.setup-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+ /* transition: background-color 0.3s ease;*/
+}
+
+.setup-button:hover {
+  background-color: #0056b3;
+}
+
+.setup-button:active {
+  background-color: #004085;
+}
+
+/***********************************************
+ * TOGGLE SWITCH STYLES
+ ***********************************************/
+.toggle-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider track */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Checkbox checked state */
+input:checked + .slider {
+  background-color: #007bff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/***********************************************
+ * SORT OPTIONS SECTION
+ ***********************************************/
+#sort-options-section {
+  margin-bottom: 20px;
+}
+
+/***********************************************
+ * BATTLE ARENA & LOG
+ ***********************************************/
+/* Battle Arena Section */
+#battle-arena-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Flexbox container for battle elements */
+.battle-container {
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  align-items: center;
+  gap: 30px; /* Space between elements */
+}
+
+/* Battle log container */
+/*.battle-log-container {
+  width: 250px;
+  height: 400px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}*/
+
+#battle-log-section {
+  width: 80%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+#battle-log {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/*********************************************
+* NEW BATTLE LOG 
+*********************************************/
+/* Battle log container */
+.battle-log-container {
+  width: 250px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Ensures new messages align at the bottom */
+  overflow: hidden; /* Prevents extra scrollbars */
+}
+
+/* Optional: Style scrollbar for Webkit browsers (Chrome, Safari) */
+#battle-log::-webkit-scrollbar {
+  width: 5px;
+}
+
+#battle-log::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+/* VS text styling */
+.vs-text {
+  font-size: 3em;
+  font-weight: bold;
+  color: #ff4500;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Adjust each Pokémon's display */
+.pokemon-fighter {
+    width: 250px; 
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.5); 
+}
+
+/* Pokémon images */
+#pokemon1-display img,
+#pokemon2-display img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #4a90e2;
+}
+
+/* Pokémon background colors */
+#pokemon1-display {
+    background-color: rgba(255, 160, 122, 0.6); 
+}
+
+#pokemon2-display {
+    background-color: rgba(144, 238, 144, 0.6); 
+}
