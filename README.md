@@ -18,7 +18,7 @@ Per executar el projecte localment, segueix aquests passos:
 
 1. Clona aquest repositori:
    ```bash
-   git clone https://github.com/usuari/ProyectPokemon.git
+   git clone https://github.com/moha-2001/ProyectPokemon.git
 
 2. Accedeix al directori del projecte:
 
